@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1/perfData', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/perfData', {useNewUrlParser: true, useUnifiedTopology: true});
 const Machine = require('./models/Machine');
 
 function socketMain(io, socket){
@@ -40,6 +40,7 @@ function socketMain(io, socket){
     // a machine has connected, check to see if it's new.
     // if it is, add it!
     socket.on('initPerfData',async(data)=>{
+        console.log("initPerfData", data);
         // update our socket connect function scoped variable
         macA = data.macA
         // now go check mongo!
@@ -64,9 +65,7 @@ function checkAndAdd(data){
                     throw err;
                     reject(err);
                 }else if(doc === null){
-                    // these are the droids we're looking for!
-                    // the record is not in the db, so add it!
-                    let newMachine = new Machine(data);
+                    const newMachine = new Machine(data);
                     newMachine.save(); //actually save it
                     resolve('added')
                 }else{
