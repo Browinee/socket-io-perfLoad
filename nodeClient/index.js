@@ -16,7 +16,7 @@ const io = require('socket.io-client');
 const socket = io('http://127.0.0.1:8181');
 
 socket.on('connect', () => {
-    // console.log('I connected to the socket server... hooray!')
+    console.log('I connected to the socket server... hooray!')
     // we need a way to identify this machine to whomever concerned
     const nI = os.networkInterfaces();
     // console.log(nI)
@@ -29,7 +29,7 @@ socket.on('connect', () => {
         break;
         // FOR TESTING PURPOSES!!!
 
-        if (!nI[key][0].internal) {
+        if (!nI[key][0].internal) { // nI[key][1] is ip6
             if (nI[key][0].mac === '00:00:00:00:00:00') {
                 macA = Math.random().toString(36).substr(2, 15);
             } else {
@@ -48,7 +48,7 @@ socket.on('connect', () => {
     });
 
     // start sending over data on interval
-    let perfDataInterval = setInterval(() => {
+    const perfDataInterval = setInterval(() => {
         performanceData().then((allPerformanceData) => {
             // console.log(allPerformanceData)
             allPerformanceData.macA = macA;

@@ -7,7 +7,7 @@ const express = require('express');
 const cluster = require('cluster');
 const net = require('net');
 const socketio = require('socket.io');
-// const socketMain = require('./socketMain');
+const socketMain = require('./socketMain');
 
 const port = 8181;
 const num_processes = require('os').cpus().length;
@@ -80,7 +80,7 @@ if (cluster.isMaster) {
     // Here you might use Socket.IO middleware for authorization etc.
 	// on connection, send the socket over to our module with socket stuff
     io.on('connection', function(socket) {
-		// socketMain(io,socket);
+		socketMain(io,socket);
 		console.log(`connected to worker: ${cluster.worker.id}`);
     });
 
