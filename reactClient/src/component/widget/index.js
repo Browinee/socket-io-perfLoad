@@ -20,7 +20,6 @@ const Widget = (props) => {
         macA,
         isActive
     } = props.data;
-    console.log("widget", props.data)
     const cpuWidgetId = `cpu-widget-${macA}`;
     const memWidgetId = `mem-widget-${macA}`;
 

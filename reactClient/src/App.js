@@ -8,6 +8,7 @@ function App() {
     const [performanceData, setPerf] = useState({});
     useEffect(() => {
         socket.on('data', (data) => {
+            console.log('data', data);
             setPerf((prevPerf) => {
                 return {
                     ...prevPerf,

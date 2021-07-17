@@ -74,7 +74,6 @@ if (cluster.isMaster) {
 	// redis-cli monitor
 	// const redis =  io_redis({ host: 'myredis', port: 6379 });
 	const redis =  io_redis({ host: '127.0.0.1', port: 6379 });
-	// const redis =  io_redis({ host: 'redis', port: 6379 });
 	io.adapter(redis);
 
     // Here you might use Socket.IO middleware for authorization etc.
