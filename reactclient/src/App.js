@@ -16,7 +16,6 @@ function App() {
             });
         })
     }, []);
-    console.log("perf", performanceData)
     return (
         <div className="App">
             {

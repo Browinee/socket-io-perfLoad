@@ -6,8 +6,8 @@ function Mem(props){
     const {totalMem, usedMem, memUseage,freeMem} = props.memData;
     const canvas = document.querySelector(`.${props.memData.memWidgetId}`);
     drawCircle(canvas,memUseage*100);
-    const totalMemInGB = (totalMem/1073741824*100)/100;
-    const freeMemInGB = Math.floor(freeMem/1073741824*100)/100;
+    const totalMemInGB = (totalMem/Math.pow(1024, 3));
+    const freeMemInGB = Math.floor(freeMem/Math.pow(1024, 3));
     return(
         <div class="col-sm-3 mem">
             <h3>Memory Useage</h3>
